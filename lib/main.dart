@@ -1,21 +1,7 @@
 import 'package:flutter/material.dart';
+import 'login_form.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Tezro Bank',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomePage(),
-    );
-  }
-}
+void main() => runApp(const MaterialApp(home: HomePage()));
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,10 +9,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tezro Bank Web')),
-      body: const Center(
-        child: Text('خوش آمدید، یہ فلٹر کا ویب ورژن ہے!'),
-      ),
+      appBar: AppBar(title: const Text("Tezro Login")),
+      body: const Center(child: LoginForm()),
     );
   }
 }
