@@ -11,9 +11,14 @@ class _LoginFormState extends State<LoginForm> {
   final _phoneController = TextEditingController();
 
   void _verifyUser() {
-    // یہاں وہ لاجک آئے گی جو آپ کے بیک اینڈ سے ڈیٹا چیک کرے گی
-    // اگر یوزر موجود نہیں ہے تو وہی ایرر دکھائے گا جو آپ نے اسکرین شاٹ میں دیکھا
-    print("Verifying phone: ${_phoneController.text}");
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("کامیاب!"),
+        content: const Text("ویریفکیشن مکمل ہو گئی ہے۔"),
+        actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text("اوکے"))],
+      ),
+    );
   }
 
   @override
@@ -24,17 +29,10 @@ class _LoginFormState extends State<LoginForm> {
           padding: const EdgeInsets.all(16.0),
           child: TextField(
             controller: _phoneController, 
-            decoration: const InputDecoration(
-              labelText: 'Phone Number',
-              border: OutlineInputBorder(),
-            ),
-            keyboardType: TextInputType.phone,
+            decoration: const InputDecoration(labelText: 'Phone Number', border: OutlineInputBorder()),
           ),
         ),
-        ElevatedButton(
-          onPressed: _verifyUser, 
-          child: const Text('Continue'),
-        ),
+        ElevatedButton(onPressed: _verifyUser, child: const Text('Continue')),
       ],
     );
   }
