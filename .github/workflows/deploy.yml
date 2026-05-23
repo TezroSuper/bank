@@ -21,4 +21,4 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BANK }}'
-          projectId: mystic-primacy-497110-m8
+          projectId: 'mystic-primacy-497110-m8'
