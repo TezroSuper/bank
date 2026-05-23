@@ -11,18 +11,14 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
-          channel: 'stable'
       - name: Build Web
         run: |
           flutter config --enable-web
-          # اگر ویب فولڈر نہیں ہے تو یہ اسے بنا دے گا
-          if [ ! -d "web" ]; then
-            flutter create . --platforms web
-          fi
+          if [ ! -d "web" ]; then flutter create . --platforms web; fi
           flutter pub get
           flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          token: '${{ secrets.FIREBASE_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BANK }}'
           projectId: mystic-primacy-497110-m8
