@@ -11,10 +11,14 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
-      - name: Configure Web and Build
+          channel: 'stable'
+      - name: Build Web
         run: |
           flutter config --enable-web
-          flutter create . --platforms web
+          # اگر ویب فولڈر نہیں ہے تو یہ اسے بنا دے گا
+          if [ ! -d "web" ]; then
+            flutter create . --platforms web
+          fi
           flutter pub get
           flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
