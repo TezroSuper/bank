@@ -1,4 +1,4 @@
-name: Build and Deploy to Firebase
+name: Deploy
 on:
   push:
     branches:
@@ -11,17 +11,11 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
-      - name: Create Web Support
-        run: |
-          flutter config --enable-web
-          flutter create . --platforms web
-      - name: Build Web
-        run: |
-          flutter pub get
-          flutter build web
+      - run: flutter config --enable-web
+      - run: flutter pub get
+      - run: flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BANK }}'
-          channelId: live
+          token: '${{ secrets.FIREBASE_TOKEN }}'
           projectId: mystic-primacy-497110-m8
